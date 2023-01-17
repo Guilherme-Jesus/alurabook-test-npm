@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { AbBotao, Thing } from '../.';
+import { AbBotao } from '../.';
 
 const App = () => {
   return (
