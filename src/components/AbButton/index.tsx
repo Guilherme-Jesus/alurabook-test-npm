@@ -1,22 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export interface AbBotaoProps {
+export interface AbButtonProps {
   text?: string;
   tipo?: 'primary' | 'secondary';
   onClick?: () => void;
 }
 
-const StyledButton = styled.button<AbBotaoProps>`
-  background: ${(props: AbBotaoProps) =>
+const StyledButton = styled.button<AbButtonProps>`
+  background: ${(props: AbButtonProps) =>
     props.tipo === 'primary' ? '#EB9B00' : '#FFF'};
   padding: 16px 32px;
   border: 2px solid #eb9b00;
-  color: ${(props: AbBotaoProps) =>
+  color: ${(props: AbButtonProps) =>
     props.tipo === 'primary' ? '#FFF' : '#EB9B00'};
   font-size: 20px;
   cursor: pointer;
-  ${(props: AbBotaoProps) =>
+  ${(props: AbButtonProps) =>
     props.tipo === 'primary'
       ? css`
           &:hover {
@@ -32,7 +32,11 @@ const StyledButton = styled.button<AbBotaoProps>`
           }
         `}
 `;
-export const AbBotao = ({ text, onClick, tipo = 'primary' }: AbBotaoProps) => {
+export const AbButton = ({
+  text,
+  onClick,
+  tipo = 'primary',
+}: AbButtonProps) => {
   return (
     <StyledButton onClick={onClick} tipo={tipo}>
       {text}

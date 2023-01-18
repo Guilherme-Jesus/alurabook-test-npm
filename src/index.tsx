@@ -14,4 +14,7 @@ export const Thing: FC<Props> = ({ children }) => {
   return <div>{children || `the snozzberries taste like snozzberries`}</div>;
 };
 
-export * from './components/AbBotao';
+export * from './components/AbButton';
+export * from './components/AbTag';
+export * from './components/AbGroupOptions';
+export * from './components/AbCard';
