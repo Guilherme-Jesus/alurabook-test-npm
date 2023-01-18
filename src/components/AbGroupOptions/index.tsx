@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface IAbGroupOptionsProps {
+export interface IAbGroupOptions {
+  id: number;
+  title: string;
+  body: string;
+  footer: string;
+}
+
+export interface IAbGroupOptionsProps {
+  options?: IAbGroupOptions[];
   selection: boolean;
+  valueDefault?: IAbGroupOptions | null;
+  onChange?: (value: IAbGroupOptions) => void;
 }
 
 const SectionStyled = styled.section<IAbGroupOptionsProps>`
@@ -39,30 +49,35 @@ const SectionStyled = styled.section<IAbGroupOptionsProps>`
   }
 `;
 
-export const AbGroupOptions = () => {
+export const AbGroupOptions = ({
+  options,
+  onChange,
+  valueDefault,
+}: IAbGroupOptionsProps) => {
+  const [selection, setSelection] = useState<IAbGroupOptions | null>(
+    valueDefault ?? null
+  );
+
+  const aoSelecionar = (opcao: IAbGroupOptions): void => {
+    setSelection(opcao);
+    if (onChange) onChange(opcao);
+  };
+
   return (
     <>
-      <SectionStyled selection={false}>
-        <header>E-book</header>
-        <div>
-          <strong>R$ 00,00</strong>
-        </div>
-        <footer>.pdf .epub .mobi</footer>
-      </SectionStyled>
-      <SectionStyled selection={true}>
-        <header>E-book</header>
-        <div>
-          <strong>R$ 00,00</strong>
-        </div>
-        <footer>.pdf .epub .mobi</footer>
-      </SectionStyled>
-      <SectionStyled selection={false}>
-        <header>E-book</header>
-        <div>
-          <strong>R$ 00,00</strong>
-        </div>
-        <footer>.pdf .epub .mobi</footer>
-      </SectionStyled>
+      {options?.map(option => (
+        <SectionStyled
+          onClick={() => aoSelecionar(option)}
+          key={option.id}
+          selection={selection?.id === option.id}
+        >
+          <header>{option.title}</header>
+          <div>
+            <strong>{option.body}</strong>
+          </div>
+          <footer>{option.footer}</footer>
+        </SectionStyled>
+      ))}
     </>
   );
 };
