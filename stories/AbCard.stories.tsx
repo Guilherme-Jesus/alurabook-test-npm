@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof AbCard> = args => <AbCard {...args} />;
 
 export const Default = Template.bind({});
 
+
 Default.args = {
   children: <h1>Olá, eu sou um card</h1>,
 };
